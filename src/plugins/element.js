@@ -49,6 +49,9 @@ import {
     Upload
   } from 'element-ui'
 
+// import Timeline from './timeline/index.js'  
+// import TimelineItem from './timeline-item/index.js'  
+
 //变成一句形式
 // import {Button,Form, FormItem,Input,Message} from 'element-ui'
 
