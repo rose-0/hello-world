@@ -6,6 +6,12 @@ import './plugins/element.js'//导入elementui
 import './assets/css/global.css'
 //导入插件
 import TreeTable from 'vue-table-with-tree-grid'
+//导入富文本编辑器
+import VueQuillEditor from 'vue-quill-editor'
+//导入 富文本编辑器 对应的样式
+import 'quill/dist/quill.core.css' // import styles
+import 'quill/dist/quill.snow.css' // for snow theme
+import 'quill/dist/quill.bubble.css' // for bubble theme
 
 //导入字体图标
 import './assets/fonts/iconfont.css'
@@ -26,7 +32,23 @@ Vue.prototype.$http = axios
 
 Vue.config.productionTip = false
 
+// 注册一个全局的时间过滤器材
+Vue.filter('dataFormat',function(originVal){
+  const dt= new Date(originVal)
+  const y=dt.getFullYear()
+  //不足2位前面补0
+  const m=(dt.getMonth()+1+'').padStart(2,'0')
+  const d=(dt.getDate()+'').padStart(2,'0')
+
+  const hh=(dt.getHours()+'').padStart(2,'0')
+  const mm=(dt.getMinutes()+'').padStart(2,'0')
+  const ss=(dt.getSeconds()+'').padStart(2,'0')
+  return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
+})
+
 Vue.component('tree-table', TreeTable)
+//注册富文本 为全局可用组件
+Vue.use(VueQuillEditor)
 new Vue({
   router,
   //把app根组件渲染到render上
